@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "429069769285",
+    "firebase_url": "https://mchatandroid-c6fa5.firebaseio.com",
+    "project_id": "mchatandroid-c6fa5",
+    "storage_bucket": "mchatandroid-c6fa5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429069769285:android:6466278926b0104e",
+        "android_client_info": {
+          "package_name": "com.example.sk_rith.m_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "429069769285-otmsbmd3tnu3e4ao7f9oq87lvbet3tae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB2z7UfWsEG-2CD_WFLA_PrK_4Ink-G58"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
