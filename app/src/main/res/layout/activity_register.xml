@@ -5,68 +5,146 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/mainColor"
     tools:context="com.example.sk_rith.m_chat.RegisterActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Username : "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/register_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Email : "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/register_email"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Password : "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/register_password"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Confirm Password : "
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/register_confirmPassword"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <Button
-        android:id="@+id/register_signup"
-        android:text="SIGN UP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Button>
+            >
+            <ImageView
+                android:onClick="goLoginScreen"
+                android:background="@drawable/circle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:tint="#fff"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:layout_marginBottom="20dp"
+
+
+                />
+
+            <EditText
+                android:id="@+id/register_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:background="@android:color/transparent"
+                android:drawablePadding="12dp"
+                android:padding="8dp"
+                android:hint="Username"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                android:maxLines="1"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawableTint="#fff"
+                android:layout_marginTop="18dp"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:background="#fff"
+
+                android:layout_height="1dp" />
+
+            <EditText
+                android:id="@+id/register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:background="@android:color/transparent"
+                android:drawablePadding="12dp"
+                android:padding="8dp"
+                android:hint="Email"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                android:maxLines="1"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawableTint="#fff"
+                android:layout_marginTop="18dp"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:background="#fff"
+
+                android:layout_height="1dp" />
+            <EditText
+                android:id="@+id/register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="#fff"
+                android:ems="10"
+                android:drawablePadding="12dp"
+                android:padding="8dp"
+                android:hint="Password"
+                android:textColorHint="#fff"
+                android:maxLines="1"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/ic_icons8_lock"
+                android:drawableTint="#fff"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:background="#fff"
+
+                android:layout_height="1dp" />
+            <EditText
+                android:id="@+id/register_confirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="#fff"
+                android:ems="10"
+                android:drawablePadding="12dp"
+                android:padding="8dp"
+                android:hint="Confirm Password"
+                android:textColorHint="#fff"
+                android:maxLines="1"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/ic_icons8_ok"
+                android:drawableTint="#fff"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:background="#fff"
+
+                android:layout_height="1dp" />
+            <Button
+                android:id="@+id/register_signup"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mainColor"
+                android:text="Sign Up"
+                android:background="@drawable/background_login"
+                />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:text="By Creating this account you agree to our Terms \u0026 Conditions and Privacy Policy"
+                />
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
 
 </LinearLayout>

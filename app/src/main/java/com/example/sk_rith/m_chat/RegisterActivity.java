@@ -1,5 +1,7 @@
 package com.example.sk_rith.m_chat;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    private EditText registerUserName;
     private EditText registerPassword, registerConfirmPassword;
     private EditText registerEmail;
     private Button btn_signup;
@@ -30,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         registerEmail = (EditText)findViewById(R.id.register_email);
+        registerUserName = (EditText)findViewById(R.id.register_username);
         registerPassword = (EditText) findViewById(R.id.register_password);
         registerConfirmPassword = (EditText) findViewById(R.id.register_confirmPassword);
         btn_signup = (Button) findViewById(R.id.register_signup);
@@ -38,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("signup ","clicked");
                 if(isEmailValid(registerEmail.getText().toString()) && isPasswordValid(registerPassword.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Register Successfully", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Register Successfully", Toast.LENGTH_SHORT).show();
                     createFirebaseUser();
 
                 }
@@ -46,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!isEmailValid(registerEmail.getText().toString()))
                 {
+                    Toast.makeText(getApplicationContext(), "Register Failed", Toast.LENGTH_SHORT).show();
 //                    new AlertDialog.Builder(getApplicationContext())
 //                            .setTitle("Registration Error")
 //                            .setMessage("Invalid Email")
@@ -53,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                            .setIcon(android.R.drawable.ic_dialog_alert).show();
                 }
                 if(!isPasswordValid(registerPassword.getText().toString())){
-
+                    Toast.makeText(getApplicationContext(), "Register Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -76,10 +80,37 @@ public class RegisterActivity extends AppCompatActivity {
 
                 Log.d("Status", ""+task.isSuccessful());
                 if(!task.isSuccessful()){
+
                     Log.d("Status",""+"failed to create user");
+                }else{
+                    saveUserName();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    finish();
+                    startActivity(intent);
+
                 }
+
             }
         });
     }
+    private void errorAlert(String message){
+        new AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok,null)
+                .setIcon(R.drawable.ic_warning_black_24dp).show();
+    }
+    private void saveUserName(){
+        String username = registerUserName.getText().toString();
+        SharedPreferences preferences = getSharedPreferences("USERNAME_PREF",0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Username",username).apply();
+    }
 
+
+    public void goLoginScreen(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
+    }
 }
