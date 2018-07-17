@@ -2,6 +2,7 @@ package com.example.sk_rith.m_chat;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,11 +30,10 @@ public class LoginActivity extends AppCompatActivity {
         //passwordView.setOnEditorActionListener();
     }
     public void signInExistingUser(View view){
-
+        attemptToLogin();
     }
     public void registerNewUser(View view){
-        Intent intent  = new Intent(this,RegisterActivity.class);
-        finish();
+        Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
         startActivity(intent);
     }
     private void attemptToLogin(){
@@ -45,11 +45,27 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("Login","Login sucessfully" + task.isSuccessful());
-                if(!task.isSuccessful()){
-                    Log.d("Login","Failed to login" + task.getException());
+                Log.d("Login","Signing in " + task.isSuccessful());
+                if(task.isSuccessful()) {
+                    Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
+                    finish();
+                    startActivity(intent);
                 }
+                else {
+                    Log.d("Login", "Failed to login" + task.getException());
+                    showErrorDialog("Please enter a correct email or password");
+                }
+
             }
         });
     }
+    private void showErrorDialog(String message){
+        new AlertDialog.Builder(this)
+                .setTitle("Invalid account")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok,null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
 }

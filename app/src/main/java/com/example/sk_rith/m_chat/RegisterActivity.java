@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText registerUserName;
@@ -25,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //Firebase
     private FirebaseAuth firebaseAuth;
+    public static final String USERNAME_PREF = "USERNAME_PREF";
 
 
     @Override
@@ -101,10 +104,26 @@ public class RegisterActivity extends AppCompatActivity {
                 .setIcon(R.drawable.ic_warning_black_24dp).show();
     }
     private void saveUserName(){
-        String username = registerUserName.getText().toString();
-        SharedPreferences preferences = getSharedPreferences("USERNAME_PREF",0);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("Username",username).apply();
+//        String username = registerUserName.getText().toString();
+//        SharedPreferences preferences = getSharedPreferences(USERNAME_PREF,0);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putString("Username",username).apply();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String userName = registerUserName.getText().toString();
+        if(user!=null){
+            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(userName)
+                    .build();
+            user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("M-Chat", "Update Username");
+                    }
+
+                }
+            });
+        }
     }
 
 

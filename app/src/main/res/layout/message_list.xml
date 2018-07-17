@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+
+    >
+    <TextView
+        android:id="@+id/author"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Smith"
+        android:textStyle="bold"
+        android:textSize="15sp"
+
+        android:gravity="center_vertical"
+        android:textColor="@color/mainColor"
+        android:layout_gravity="start"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"/>
+    <TextView
+        android:background="@drawable/chat_box"
+
+        android:id="@+id/messageForAuthor"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Hello, how are you?"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/primary_text_light"
+        android:layout_gravity="start"
+        android:padding="10dp"
+        android:layout_margin="5dip"/>
+
+</LinearLayout>
